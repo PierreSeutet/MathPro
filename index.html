@@ -1,0 +1,123 @@
+<html>
+<head>
+        <title>Mathpro</title>
+        <link rel="stylesheet" href="style.css">
+         <meta charset="UTF-8">
+    </head>
+    
+    
+<body>
+    <div class="container">
+        <div class="menu">
+            <ul>
+                <li><img class="logo" src="image-removebg-preview.png"></li>
+                <li class="active">Home</li>
+                <li class="active" >About us</li>
+                <li class="active"> <a style="text-decoration:none;" href="CONTACTUSPAGE.html">Contact us</a></li>
+                <li><a href="#" class="logged-in" data-target="modal-account">Account</a></li>
+                <li><a href="#" class="logged-in" id="logout">Logout</a></li>
+
+            </ul>
+        </div> 
+        
+        <div class="banner">
+            <div text-algin="justify" class="App-text">
+                <h1> MathPro helps you to learn and understand well<br>many concepts in mathematics and it offers you <br> a personalise help</h1>
+                <p> You can have acces to many lessons concerning <br>Algebra, Analysis and Probability and get train for your test</p>                
+            </div>
+            
+            <div class="app-picture">
+                <img src="logo.png">
+            </div>
+            
+  <div class="logged-out">
+            
+             <!-- SIGN UP MODAL -->
+  <div id="modal-signup" class="modal">
+    <div class="modal-content">
+      <form class="box" id="signup-form">
+        <h3>Sign up</h3>
+        <div class="input-field">
+          <input type="email" placeholder="Enter Email" id="signup-email" required />
+        </div>
+        <div class="input-field">
+          <input type="password" placeholder="Enter Password" id="signup-password" required />
+        </div>
+        <input type="submit" name="" value="Sign up">
+      </form>
+    </div>
+  </div>
+
+  <!-- LOGIN MODAL -->
+  <div id="modal-login" class="modal" >
+    <div class="modal-content">
+      <form class="box" id="login-form" >
+        <h3>Login</h3>
+        <div class="input-field">
+          <input type="email" placeholder="Enter Email" id="login-email" required />
+        </div>
+        <div class="input-field">
+          <input type="password" placeholder="Enter Password" id="login-password" required />
+        </div>
+        <input type="submit" name="" value="Login">
+      </form>
+    </div>
+    
+  </div>
+  </div>
+
+<div class="logged-out"> 
+  <p id = "choose" >Or you can choose to :
+<button id="signupbutton" class="signup-btn" href="#" data-target="modal-signup" onclick="showsignup();"><span id = "su">Sign up</span></button>
+<button id="loginbutton" class="signin-btn" href="#" data-target="modal-login" onclick="showlogin();"><span id ="log">Login</span></button>
+  </p>
+</div>
+
+<div class="accountinfo" id ="emailuser" ></div>
+  
+  
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-firestore.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyAWwACuRzj1HBQwfoYhHEnPUEoMO_8ShQY",
+    authDomain: "mathpro-65e56.firebaseapp.com",
+    databaseURL: "https://mathpro-65e56.firebaseio.com",
+    projectId: "mathpro-65e56",
+    storageBucket: "mathpro-65e56.appspot.com",
+    messagingSenderId: "216603472735",
+    appId: "1:216603472735:web:634d64881e770a13c33cea",
+    measurementId: "G-F8RP6CWQD3"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+  
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+  
+db.settings({ timestampsInSnapshots: true });
+</script>
+  
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="scripts/auth.js"></script>
+  <script src="scripts/index.js"></script>
+  
+  <script>
+    auth.onAuthStateChanged(user => {
+  if (user) {
+    document.location.href="HOMEPAGE.html";
+  }});
+  </script>
+  
+</body>
+</html>

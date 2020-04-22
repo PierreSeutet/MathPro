@@ -1,0 +1,491 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="styleSectionFiletheblank.css">
+    <meta charset="UTF-8">
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="top-bar">
+            <div class="logo">
+                <img src="logo.png">
+            </div>
+            <div class="menu-bar">
+                <ul>
+                    <li><a href="HOMEPAGE.html" style="text-decoration: none;color:black">Home</a></li>
+                    <li class="active"><a href="HOMEPAGE.html" style="text-decoration: none;color:black">Algebra</a>
+                    </li>
+                    <li onclick="functionanalysis();"><a href="HOMEPAGE.html"
+                            style="text-decoration: none;color:black">Analysis</a></li>
+                    <li><a href="HOMEPAGE.html" style="text-decoration: none;color:black">Probability</a></li>
+                    <li>Dashboards</li>
+                    <li><a href="#" id="logout" style="text-decoration: none;color:black">Logout</a></li>
+                    <li>
+                        <div id="emailuser" style="width:5px"></div>
+                    </li>
+                </ul>
+            </div>
+
+
+        </div>
+        <div class="main-stuff" id="main-stuff">
+            <a href="SECTIONMCQEXERCISESDOUBLEINTEGRALS.html" style="text-decoration: none;color:black"><button
+                    class="extansion">MCQ EXERCISES</button></a>
+            <a href="SectionFiletheblank.html" style="text-decoration: none;color:black"><button class="extansion1">FILE
+                    THE BLANK EXERCISES</button></a>
+
+            <div class="div1">
+                <form onsubmit="return
+    validateForm()" method="post">
+                    <fieldset class="fifi1">
+                        <legend>Question:</legend>
+
+                        <label>Compute this integral : </label><br>
+                        <img alt="ennonce" id="eq_ennonce" src="" alt="ennonce" style="margin-left: 13%;">
+                        <br>
+                        <fieldset class="centre" style='margin: 0% 25% 0% 25%;'>
+                            <input type="text" name="answer" id="answer" style="margin-left: 35%;" size="2"
+                                required><label id="text1"></label>
+
+
+
+
+                        </fieldset>
+                        <button type="button" onclick="soluce()" style="margin-top: 2%;">Submit</button>
+                        <button type="button" onclick="tout()" style="margin-top: 2%;"
+                            id='refresh'>Suivant</button>
+                        <p id="text4"></p>
+                        <img id="solution" src="blanc.png" width="10" height="10" alt="City Map"><br>
+
+                    </fieldset>
+                </form>
+
+                <p id="question_fait"></p>
+                <p id="niveau_question"></p>
+                <p id="niveau_mec"></p>
+                <p id="rep_slt"></p>
+                <p id="solution_temporaire"></p>
+                <p id='pourcent_question_choisi'></p>
+                <p id='num_question'></p>
+            </div>
+
+
+            <br>
+            <br>
+
+
+
+        </div>
+
+    </div>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-firestore.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyAWwACuRzj1HBQwfoYhHEnPUEoMO_8ShQY",
+            authDomain: "mathpro-65e56.firebaseapp.com",
+            databaseURL: "https://mathpro-65e56.firebaseio.com",
+            projectId: "mathpro-65e56",
+            storageBucket: "mathpro-65e56.appspot.com",
+            messagingSenderId: "216603472735",
+            appId: "1:216603472735:web:634d64881e770a13c33cea",
+            measurementId: "G-F8RP6CWQD3"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        db.settings({ timestampsInSnapshots: true });
+    </script>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+    <script>
+        const loggedOutLinks = document.querySelectorAll('.logged-out');
+        const loggedInLinks = document.querySelectorAll('.logged-in');
+
+        const accountDetails = document.querySelector("#emailuser");
+
+
+        // listen for auth status changes
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                console.log('user logged in: ', user);
+                loggedInLinks.forEach(item => item.style.display = 'block');
+                loggedOutLinks.forEach(item => item.style.display = 'none');
+
+                const html = `${user.email}`;
+                accountDetails.innerHTML = html;
+                accountDetails.data = html;
+            }
+        });
+
+
+
+        // logout
+        const logout = document.querySelector('#logout');
+        logout.addEventListener('click', (e) => {
+            e.preventDefault();
+            auth.signOut().then(() => {
+                console.log('user signed out');
+                document.location.href = "index.html";
+            });
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+
+        function tout() {
+            auth.onAuthStateChanged(user => {
+                if (user) {
+                    console.log('user logged in: ', user);
+                    loggedInLinks.forEach(item => item.style.display = 'block');
+                    loggedOutLinks.forEach(item => item.style.display = 'none');
+
+                    const html = `${user.email}`;
+                    accountDetails.innerHTML = html;
+                    accountDetails.data = html;
+
+
+                    function image1(nb) {
+
+                        const ennonce_img = document.getElementById('eq_ennonce');
+                        const sol_img = document.getElementById("solution_temporaire");
+                        const rep_slt = document.getElementById("rep_slt");
+                        const sol_img_temp = document.getElementById("solution");
+                        sol_img_temp.src = "https://firebasestorage.googleapis.com/v0/b/mathpro-65e56.appspot.com/o/blanc.png?alt=media&token=3ef98653-5bb3-4dc6-a345-61a34a924714";
+
+                        text1.innerText = '';
+
+                        //ennonce image
+                        db.collection('ReponseUnique').get().then(snapshot => {
+                            setupMCQ(snapshot.docs);
+                        });
+
+                        const setupMCQ = (data) => {
+
+                            let html = [];
+
+                            data.forEach(doc => {
+                                const mcq = doc.data();
+                                const li = `
+          ${mcq.enonce}
+      `;
+                                if (typeof mcq.enonce == 'string') {
+                                    html.push(li);
+                                }
+                            });
+                            //window.alert(html[nb])
+                            ennonce_img.src = html[nb];
+                        };
+
+                        //solution nombre
+                        db.collection('ReponseUnique').get().then(snapshot => {
+                            setupMCQ0(snapshot.docs);
+                        });
+
+                        const setupMCQ0 = (data) => {
+
+                            let html = [];
+
+                            data.forEach(doc => {
+                                const mcq = doc.data();
+                                const li = `
+                    ${mcq.solution}
+                `;
+                                if (typeof mcq.solution == 'string') {
+                                    html.push(li);
+                                }
+                            });
+                            rep_slt.data = html[nb];
+
+                        };
+
+                        //rep solution image
+                        db.collection('ReponseUnique').get().then(snapshot => {
+                            setuppMCQ3(snapshot.docs);
+                        });
+
+                        const setuppMCQ3 = (data) => {
+
+                            let html = [];
+
+                            data.forEach(doc => {
+                                const mcq = doc.data();
+                                const li = `
+                    ${mcq.solution_img}
+                `;
+                                if (typeof mcq.solution_img == 'string') {
+                                    html.push(li);
+                                }
+                            });
+                            //window.alert(html[nb])
+                            sol_img.data = html[nb];
+                        };
+                    }
+
+
+                    function recupere_info() {
+
+                        // niveau question
+                        const question_lv = document.getElementById("niveau_question");
+                        db.collection('ReponseUnique').get().then(snapshot => {
+                            setuppMCQ2(snapshot.docs);
+                        });
+
+                        var question0 = [];
+
+                        const setuppMCQ2 = (data) => {
+
+
+                            data.forEach(doc => {
+                                const mcq = doc.data();
+                                const li = `
+                    ${mcq.niveau}
+                `;
+                                if (typeof mcq.niveau == 'number') {
+                                    question0.push(li);
+                                }
+
+                            });
+
+                            question_lv.data = question0;
+
+                        };
+
+                        // niveau mec
+                        function niveau_mec_pris() {
+                            const niveau_mec = document.getElementById("niveau_mec");
+
+                            const user = document.getElementById('emailuser').data;
+                            var docref = db.collection('User').doc(user);
+                            //alert(user);
+                            docref.get().then(function (doc) {
+                                if (doc.exists) {
+                                    var test = doc.data();
+                                    niveau_mec.data = test.niveau_mec;
+                                }
+                            }).catch(function (error) {
+                                alert("probleme");
+                            })
+                                ;
+                        }
+                        niveau_mec_pris();
+
+                        // question fait
+                        function question_fait_pris() {
+                            const question_fait = document.getElementById("question_fait");
+                            const user = document.getElementById('emailuser').data;
+                            var docref = db.collection('User').doc(user);
+                            docref.get().then(function (doc) {
+                                if (doc.exists) {
+                                    var test = doc.data();
+                                    question_fait.data = test.unique_fait;
+                                }
+                            }).catch(function (error) {
+                                alert("probleme");
+                            })
+                                ;
+                        }
+                        question_fait_pris();
+
+                        //choisi exo
+                        db.collection('User').get().then(snapshot => {
+                            setuppMCQ8(snapshot.docs);
+                        });
+
+                        const setuppMCQ8 = (data) => {
+
+                            const question_fait0 = document.getElementById("question_fait").data;
+                            const question_lv0 = document.getElementById("niveau_question").data;
+                            const niveau_mec0 = document.getElementById("niveau_mec").data;
+                            pourcentage_reussite(niveau_mec0, question_lv0, question_fait0);
+
+                        };
+
+                        function pourcentage_reussite(x, niveau_exercice, question_fait) {
+
+                            var proba;
+                            var proba_total = [];
+                            for (i = 0; i < niveau_exercice.length; i++) {
+                                var couple = []
+                                proba = ((2.718281828 ** (x - niveau_exercice[i])) / (1 + ((2.718281828) ** (x - niveau_exercice[i])))) * 100
+                                couple.push(i);
+                                couple.push(proba);
+                                proba_total.push(couple)
+                            }
+
+                            if (question_fait != '') {
+                                var new_question_fait = question_fait.split(',');
+                                for (i = 0; i < new_question_fait.length; i++) {
+                                    var nb = parseInt(new_question_fait[i]);
+                                    delete proba_total[nb];
+                                }
+                            }
+
+                            var question_a_faire = [];
+                            for (i = 0; i < proba_total.length; i++) {
+                                if (proba_total[i] != null) {
+                                    if ((proba_total[i][1] > 15) & (proba_total[i][1] < 90)) {
+                                        question_a_faire.push(i);
+                                    }
+                                }
+                            }
+                            const pourcent_question_choisi = document.getElementById("pourcent_question_choisi");
+                            //alert(question_a_faire + ' question_a_faire ')
+                            nb = Math.floor(Math.random() * question_a_faire.length);
+                            num_q_a_faire = question_a_faire[nb];
+                            //alert(num_q_a_faire + " num_q_a_faire");
+                            var kk = proba_total[num_q_a_faire][1];
+                            pourcent_question_choisi.data = kk;
+                            image1(num_q_a_faire);
+
+                            const num_question = document.getElementById("num_question");
+                            num_question.data = num_q_a_faire;
+                        }
+
+
+                    }
+
+
+                    recupere_info();
+
+
+                }
+            });
+        }
+        tout();
+
+        function soluce_indiv(reponse) {
+            reponse = reponse.trim()
+            const element = document.getElementById("text1");
+            element.innerText = reponse.toUpperCase();
+            element.style.marginLeft = "10%";
+            if (reponse == 'true') {
+                element.style.color = 'green';
+
+            } else {
+
+                element.style.color = 'red';
+            }
+        }
+
+        function soluce() {
+            var surface = document.getElementById("answer");
+            var surf = surface.value;
+
+            if (surf != '') {
+                db.collection('User').get().then(snapshot => {
+                    setuppMCQ8(snapshot.docs);
+                });
+
+                const setuppMCQ8 = (data) => {
+
+                    const solution_img = document.getElementById("solution_temporaire").data;
+                    const sol_img = document.getElementById("solution");
+                    sol_img.src = solution_img;
+                    sol_img.style.width = "700";
+                    sol_img.style.height = "160";
+
+                };
+                const niveau_mec0 = document.getElementById("niveau_mec").data;
+                const pourcent_question_choisi = document.getElementById("pourcent_question_choisi").data;
+                const reponse_slt = document.getElementById("rep_slt").data;
+                var reponse_finale = ''
+                const user = document.getElementById('emailuser').data;
+
+                if (surf.trim() == reponse_slt.trim()) {
+                    reponse_finale = 'true';
+                } else {
+                    reponse_finale = 'false';
+                }
+
+                soluce_indiv(reponse_finale);
+
+                if (soluce[reponse].trim() == 'true') {
+                    addquestion_fait(user);
+                    if (pourcent_question_choisi < 40) {
+                        nouveau_niveau_mec = parseInt(niveau_mec0) + 0.75;
+                    } else if (pourcent_question_choisi > 60) {
+                        nouveau_niveau_mec = parseInt(niveau_mec0) + 0.25;
+                    } else {
+                        nouveau_niveau_mec = parseInt(niveau_mec0) + 0.5;
+                    }
+                } else {
+                    if (pourcent_question_choisi < 40) {
+                        nouveau_niveau_mec = parseInt(niveau_mec0) - 0.25;
+                    } else if (pourcent_question_choisi > 60) {
+                        nouveau_niveau_mec = parseInt(niveau_mec0) - 0.75;
+                    } else {
+                        nouveau_niveau_mec = parseInt(niveau_mec0) - 0.5;
+                    }
+                }
+                if (nouveau_niveau_mec < 0) {
+                    nouveau_niveau_mec = 0;
+                } else if (nouveau_niveau_mec > 6) {
+                    nouveau_niveau_mec = 6;
+                }
+                //window.alert(nouveau_niveau_mec);
+                function adddate(nouveau_niveau_mec, user) {
+                    var addthis = db.collection('User').doc(user);
+                    var setWithMerge = addthis.set({ niveau_mec: nouveau_niveau_mec }, { merge: true })
+                    //window.alert("ajouté")
+                }
+                function addquestion_fait(user) {
+                    const num_question = document.getElementById("num_question").data;
+                    const question_fait0 = document.getElementById("question_fait").data;
+                    if (question_fait0 != "") {
+                        question_fait1 = question_fait0.toString().trim() + ',' + num_question;
+                    } else {
+                        question_fait1 = num_question.toString();
+                    }
+                    var addthis = db.collection('User').doc(user);
+                    var setWithMerge = addthis.set({ unique_fait: question_fait1 }, { merge: true })
+                    //window.alert("ajouté")
+                }
+
+                adddate(nouveau_niveau_mec, user);
+            } else {
+                alert("Please select one or several answers")
+            }
+        }
+
+
+
+
+
+    </script
+
+
+
+
+    
+    </body>
+</html>

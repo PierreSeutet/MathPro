@@ -1,0 +1,155 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="stylesectioncoursAlgebra.css">
+        <meta charset="UTF-8">
+        
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="top-bar">
+                <div class="logo">
+                    <img src="logo.png">
+                </div>
+                <div class="menu-bar">
+                    <ul>
+                        <li><a href="HOMEPAGE.html" style="text-decoration: none;color:black">Home</a></li>
+                        <li class="active"><a href="HOMEPAGE.html" style="text-decoration: none;color:black">Algebra</a></li>
+                        <li onclick="functionanalysis();"><a href="HOMEPAGE.html" style="text-decoration: none;color:black">Analysis</a></li>
+                        <li><a href="HOMEPAGE.html" style="text-decoration: none;color:black">Probability</a></li>
+                        <li>Dashboards</li>
+                        <li><a href="#"  id="logout" style="text-decoration: none;color:black">Logout</a></li>
+                        <li><div  id ="emailuser" style="width:5px" ></div></li>
+                    </ul>
+                </div>
+                
+                
+            </div>
+            <div class="main-stuff" id="main-stuff">
+                <a href="SECTIONCOURSALGERBA.html" style="text-decoration: none;color:black"><button class="extansion">Lessons</button></a>
+                <a href="SECTIONTRAINNINGALGEBRA.html" style="text-decoration: none;color:black"><button class="extansion1">Training</button></a>
+                <div class="box">
+                    <h2>Multiple Integrals </h2>
+                    <ul>
+                        <li><a href="DOUBLEINTEGRASLESSONPAGE.html" style="text-decoration: none;color:black"><span>1</span>Double Integrals</a></li>
+                        <li><span>2</span>Iterated Integrals</li>
+                        <li><span>3</span>Double Integrals over General<pre>       Regions</pre> </li>
+                        <li><span>4</span>Double Integrals in Polar Coordinates</li>
+                        <li><span>5</span>Triple Integrals </li>
+                        <li style="text-align: left"><span>6</span>Triple Integrals In Cylindrical <pre>       Coordinates</pre></li>
+                    </ul>
+                    
+                    
+                </div>
+                <div class="box">
+                    <h2>Line Integrals</h2>
+                    <ul>
+                        <li><a href="DOUBLEINTEGRASLESSONPAGE.html" style="text-decoration: none;color:black"><span>1</span>Vector Fields</a></li>
+                        <li><span>2</span>Line Integrals Part 1</li>
+                        <li><span>3</span>Line Integrals Part 2<pre></pre> </li>
+                        <li><span>4</span>Line Integrals Of Vector Fields</li>
+                        <li><span>5</span>Fundamental Theorem For Line <pre>       Integrals</pre> </li>
+                        <li style="text-align: left"><span>6</span>Conservative Vector Fields <pre></pre></li>
+                        <li><span>7</span>Green's Theorem</li>
+                    </ul>
+                    
+                    
+                </div>
+                
+                <div class="box">
+                    <h2>Multiple Integrals </h2>
+                    <ul>
+                        <li><a href="DOUBLEINTEGRASLESSONPAGE.html" style="text-decoration: none;color:black"><span>1</span>Double Integrals</a></li>
+                        <li><span>2</span>Iterated Integrals</li>
+                        <li><span>3</span>Double Integrals over General<pre>       Regions</pre> </li>
+                        <li><span>4</span>Double Integrals in Polar Coordinates</li>
+                        <li><span>5</span>Triple Integrals </li>
+                        <li style="text-align: left"><span>6</span>Triple Integrals In Cylindrical <pre>       Coordinates</pre></li>
+                    </ul>
+                    
+                    
+                </div>
+                    
+                
+                
+                <br>
+                <br>
+                
+                
+                
+            </div>
+        </div>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-firestore.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyAWwACuRzj1HBQwfoYhHEnPUEoMO_8ShQY",
+    authDomain: "mathpro-65e56.firebaseapp.com",
+    databaseURL: "https://mathpro-65e56.firebaseio.com",
+    projectId: "mathpro-65e56",
+    storageBucket: "mathpro-65e56.appspot.com",
+    messagingSenderId: "216603472735",
+    appId: "1:216603472735:web:634d64881e770a13c33cea",
+    measurementId: "G-F8RP6CWQD3"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+  
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+  
+db.settings({ timestampsInSnapshots: true });
+</script>
+  
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  
+  <script>
+    const loggedOutLinks = document.querySelectorAll('.logged-out');
+    const loggedInLinks = document.querySelectorAll('.logged-in');
+    
+    const accountDetails = document.querySelector("#emailuser");
+
+
+    // listen for auth status changes
+auth.onAuthStateChanged(user => {
+  if (user) {
+    console.log('user logged in: ', user);
+    loggedInLinks.forEach(item => item.style.display = 'block');
+    loggedOutLinks.forEach(item => item.style.display = 'none');
+    
+    const html = `${user.email}`;
+    accountDetails.innerHTML = html;
+    accountDetails.data = html;
+  } 
+});
+
+
+  
+// logout
+const logout = document.querySelector('#logout');
+logout.addEventListener('click', (e) => {
+  e.preventDefault();
+  auth.signOut().then(() => {
+    console.log('user signed out');
+    document.location.href="index.html";
+  }) ;
+});
+
+
+
+
+
+  </script>
+        
+    </body>
+</html>

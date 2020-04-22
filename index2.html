@@ -1,0 +1,98 @@
+<html>
+<head>
+        <title>Mathpro</title>
+        <link rel="stylesheet" href="style.css">
+         <meta charset="UTF-8">
+    </head>
+    
+    
+<body>
+    <div class="container">
+        <div class="menu">
+            <ul>
+                <li><img class="logo" src="image-removebg-preview.png"></li>
+                <li class="active">Home</li>
+                <li><a href="#" class="logged-in" data-target="modal-account">Account</a></li>
+                <li><a href="#" class="logged-in" id="logout">Logout</a></li>
+                <li><div class="accountinfo" id ="emailuser" ></div></li>
+
+            </ul>
+        </div> 
+      
+       
+      
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-firestore.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyAWwACuRzj1HBQwfoYhHEnPUEoMO_8ShQY",
+    authDomain: "mathpro-65e56.firebaseapp.com",
+    databaseURL: "https://mathpro-65e56.firebaseio.com",
+    projectId: "mathpro-65e56",
+    storageBucket: "mathpro-65e56.appspot.com",
+    messagingSenderId: "216603472735",
+    appId: "1:216603472735:web:634d64881e770a13c33cea",
+    measurementId: "G-F8RP6CWQD3"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+  
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+  
+db.settings({ timestampsInSnapshots: true });
+</script>
+  
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  
+  <script>
+    const loggedOutLinks = document.querySelectorAll('.logged-out');
+    const loggedInLinks = document.querySelectorAll('.logged-in');
+    
+    const accountDetails = document.querySelector(".accountinfo");
+
+
+    // listen for auth status changes
+auth.onAuthStateChanged(user => {
+  if (user) {
+    console.log('user logged in: ', user);
+    loggedInLinks.forEach(item => item.style.display = 'block');
+    loggedOutLinks.forEach(item => item.style.display = 'none');
+    
+    const html = `${user.email}`;
+    accountDetails.innerHTML = html;
+    accountDetails.data = html;
+  } 
+});
+
+
+  
+// logout
+const logout = document.querySelector('#logout');
+logout.addEventListener('click', (e) => {
+  e.preventDefault();
+  auth.signOut().then(() => {
+    console.log('user signed out');
+    document.location.href="/Users/pierre/Documents/cours/PIB2/Projet/Projet sem2/implementation login/index.html";
+  }) ;
+});
+
+
+
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<html>
+<head>
+        <title>Mathpro</title>
+        <link rel="stylesheet" href="style.css">
+         <meta charset="UTF-8">
+         <meta name="viewport" content="width=device-width, intial-scale=1.0">
+         <link rel="stylesheet" href="https://cloudfare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+         
+    </head>
+    
+    
+<body>
+    <div class="container">
+        <div class="menu">
+            <ul>
+                <li><img class="logo" src="image-removebg-preview.png"></li>
+                <li class="active">Home</li>
+                <li class="active" >About us</li>
+                <li class="active"> <a style="text-decoration:none;" href="CONTACTUSPAGE.html">Contact us</a></li>
+                <li><a href="#" class="logged-in" data-target="modal-account">Account</a></li>
+                <li><a href="#" class="logged-in" id="logout">Logout</a></li>
+
+            </ul>
+        </div>
+        <div id="contact-section">
+            <div class="containner">
+                <h2>Conctact us</h2>
+                <p> Email us    and keep upto date with our latest news</p>
+                <div class="contact-form">
+                    
+                    <div>
+                        <i class="fa fa-map-marker"></i><span class="form-info">3 rue lebon France</span><br>
+                         <i class="fa fa-map-phone"></i><span class="form-info">phone no +3360609981844</span><br>
+                          <i class="fa fa-map-envelope"></i><span class="form-info"> chayrigues@eisti.eu</span><br>
+                        
+                    </div
+                    <div>
+                        <form>
+                            <input type="text" placeholder="Your name" required>
+                            <input type="text" placeholder="Last name" required>
+                            <input type="Email" placeholder="Email" required>
+                            <input type="text" placeholder="Subject of this message" required>
+                            <textarea name="message"  placeholder="Message" rows="5" required></textarea>
+                            
+                        </form>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+        </div>
+     </div>
+    
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-firestore.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyAWwACuRzj1HBQwfoYhHEnPUEoMO_8ShQY",
+    authDomain: "mathpro-65e56.firebaseapp.com",
+    databaseURL: "https://mathpro-65e56.firebaseio.com",
+    projectId: "mathpro-65e56",
+    storageBucket: "mathpro-65e56.appspot.com",
+    messagingSenderId: "216603472735",
+    appId: "1:216603472735:web:634d64881e770a13c33cea",
+    measurementId: "G-F8RP6CWQD3"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+  
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+  
+db.settings({ timestampsInSnapshots: true });
+</script>
+  
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="scripts/auth.js"></script>
+  <script src="scripts/index.js"></script>
+  
+  <script>
+    auth.onAuthStateChanged(user => {
+  if (user) {
+    document.location.href="HOMEPAGE.html";
+  }});
+  </script>
+  
+</body>
+</html>
